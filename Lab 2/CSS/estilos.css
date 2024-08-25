@@ -10,3 +10,12 @@ nav a{
     margin: 0 20px;
     font-size: 18px;
 }
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.header1{
+    color: #c0c0c0;
+}
+.header2{
+    color: #4a6ba1
+}
