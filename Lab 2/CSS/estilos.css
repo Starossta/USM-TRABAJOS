@@ -24,11 +24,13 @@ header img{
 .header1{
     color: #c0c0c0;
     display: flex;
-    margin-right: 30px;
+    justify-content: end;
 }
 .header2{
     color: #4a6ba1;
     display: flex;
+    max-width: 300px;
+    justify-content: end;
 }
 body h1{
     display: flex;
