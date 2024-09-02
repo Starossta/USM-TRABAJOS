@@ -1,6 +1,22 @@
-.eetcafe{
-    text-align: center;
+.html{
     padding: 0;
     margin: 0;
+}
+.eetcafe{
+    text-align: center;
     background-color: #ffcf3f;
+}
+.vegan{
+    text-align: center;
+    background-color: #6dccaa;
+
+}
+.container{
+    text-align: center;
+    background-color: white;
+    color: gray;
+}
+.izqui{
+    text-align: end;
+    margin-top: 30px;
 }
