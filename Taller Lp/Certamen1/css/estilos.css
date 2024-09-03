@@ -1,0 +1,22 @@
+/* https://coolors.co/efe9f4-3a2618-9db17c-1b512d-b1cf5f */
+body{
+    background-color: #efe9f4;
+}
+nav{
+    border-bottom: 3px solid #b1cf5f;
+    border-radius: 0 0 10px 10px;
+}
+
+#h11{
+    font-style: italic;
+    color: #1b512d;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    margin-top: 10px;
+}
+.opcionesvar{
+    color: #3a2618;
+    font-style: italic;
+    text-align: center;
+    margin-top: 20px;
+}

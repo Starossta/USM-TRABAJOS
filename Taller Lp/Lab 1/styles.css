@@ -1,0 +1,52 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.navbar-brand {
+    color: #28a745 !important;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.header {
+    background-color: #e8f5e9;
+    padding: 50px 0;
+}
+
+.header h1 {
+    color: #2e7d32;
+    font-size: 2.5em;
+}
+
+.header p {
+    color: #388e3c;
+}
+
+.product-gallery .card {
+    border: 1px solid #ddd;
+}
+
+.recycling-form {
+    background-color: #ffffff;
+    padding: 30px;
+    margin: 50px 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recycling-form h2 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
+
+.recycling-form .form-control {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: #28a745;
+    border-color: #28a745;
+}
