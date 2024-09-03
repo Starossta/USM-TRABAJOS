@@ -3,7 +3,7 @@ body{
     background-color: #efe9f4;
 }
 nav{
-    border-bottom: 3px solid #b1cf5f;
+    border-bottom: 5px solid #b1cf5f;
     border-radius: 0 0 10px 10px;
 }
 
@@ -19,4 +19,9 @@ nav{
     font-style: italic;
     text-align: center;
     margin-top: 20px;
+}
+a{
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
