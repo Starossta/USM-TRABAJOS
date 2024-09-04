@@ -3,10 +3,16 @@ body{
     background-color: #efe9f4;
 }
 nav{
+    background-color: white;
     border-bottom: 5px solid #b1cf5f;
     border-radius: 0 0 10px 10px;
 }
-
+#asd{
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    text-align: center;
+}
 #h11{
     font-style: italic;
     color: #1b512d;
