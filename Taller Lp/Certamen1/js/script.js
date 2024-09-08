@@ -1,4 +1,4 @@
-// Diccionarios
+// diccionarios
 const subcategorias = {
     plastico: ["Botellas", "Envases", "Bolsas"],
     papel: ["Periodicos", "Carton", "Papel de oficina"],
@@ -7,16 +7,16 @@ const subcategorias = {
     electronicos: ["Telefonos moviles", "Baterias", "Componentes de computadoras"]
 };
 
-// Actualizar subcategorias 
+// actualizar subcategorias 
 document.getElementById('tipoResiduo').addEventListener('change', function() {
     const tipoSeleccionado = this.value;
     const subcategoriaSelect = document.getElementById('subcategoriaResiduo');
     
-    // Limpiar las opciones actuales
+    // limpiar las opciones actuales
     subcategoriaSelect.innerHTML = '<option value="">Seleccione una subcategoría</option>';
 
     if (subcategorias[tipoSeleccionado]) {
-        // Añadir las nuevas subcategorias
+        // añadir las nuevas subcategorias
         subcategorias[tipoSeleccionado].forEach(function(subcategoria) {
             const option = document.createElement('option');
             option.value = subcategoria.toLowerCase();
@@ -26,10 +26,9 @@ document.getElementById('tipoResiduo').addEventListener('change', function() {
     }
 });
 
-// Validación del formulario
+// validacion del formulario
 document.getElementById('formulario_reciclaje').addEventListener('submit', function(event) {
-    // Prevenir envío del formulario si hay errores
-    event.preventDefault();
+    // Prevenir envio del formulario si hay errores
     let valid = true;
 
     if (valid) {

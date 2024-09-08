@@ -11,14 +11,13 @@
     <nav class="container-fluid navbar-light">
         <div class="row">
             <div class="col-6 container-fluid nav-item" id="h11"> <a class="nav-link" href="Index.html"> <h1 > Green Shop</h1> </a></div>
-            <div class="col-3 container-fluid opcionesvar nav-item" > <a class="nav-link" href="productos.html"> Catalogo </a> </div>
-            <div class="col-3 container-fluid opcionesvar" > <a class="nav-link" href="formulario.html"> Solicitud de fromulario </a></div>
+            <div class="col-3 container-fluid opcionesvar nav-item" > <a class="nav-link" href="productos.html"> Catálogo </a> </div>
+            <div class="col-3 container-fluid opcionesvar" > <a class="nav-link" href="formulario.html"> Solicitud de formulario </a></div>
         </div>
         
     </nav>
     <h1 class="container-fluid col-12 text-center h12" >Solicitud de Reciclaje</h1>
     <div class="container">
-        <h2>Formulario de Solicitud de Elementos Reciclables</h2>
         <form id="formulario_reciclaje">
             <div class="mb-3">
                 <label for="tipoResiduo" class="form-label">Tipo de Residuo</label>
@@ -30,7 +29,6 @@
                     <option value="metales">Metales</option>
                     <option value="electronicos">Electrónicos</option>
                 </select>
-                <div class="error-message" id="tipoResiduoError"></div>
             </div>
 
             <div class="mb-3">
@@ -38,31 +36,26 @@
                 <select class="form-select" id="subcategoriaResiduo" required>
                     <option value="">Seleccione una subcategoría</option>
                 </select>
-                <div class="error-message" id="subcategoriaResiduoError"></div>
             </div>
 
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="nombre" required>
-                <div class="error-message" id="nombreError"></div>
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Correo Electrónico</label>
                 <input type="email" class="form-control" id="email" required>
-                <div class="error-message" id="emailError"></div>
             </div>
 
             <div class="mb-3">
                 <label for="direccion" class="form-label">Dirección</label>
                 <input type="text" class="form-control" id="direccion" required>
-                <div class="error-message" id="direccionError"></div>
             </div>
 
             <div class="mb-3">
                 <label for="cantidad" class="form-label">Cantidad de Residuos</label>
                 <input type="number" class="form-control" id="cantidad" required>
-                <div class="error-message" id="cantidadError"></div>
             </div>
 
             <div class="mb-3">
