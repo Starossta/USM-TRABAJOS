@@ -6,7 +6,12 @@ body{
     flex-direction: column;
     min-height: 100vh;
 }
-
+button{
+    background-color: #9db17c;
+    margin-bottom: 10px;
+    border-radius: 5px 5px 5px 5px;
+    border: solid #3a2618;
+}
 nav{
     background-color: white;
     border-bottom: 5px solid #3a2618;
