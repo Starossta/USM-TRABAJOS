@@ -25,8 +25,6 @@ document.getElementById('tipoResiduo').addEventListener('change', function() {
     }
 });
 
-// validacion del formulario
 document.getElementById('formulario_reciclaje').addEventListener('submit', function(event) {
-    // Prevenir envio del formulario si hay errores
     alert("Formulario enviado correctamente");
 });
