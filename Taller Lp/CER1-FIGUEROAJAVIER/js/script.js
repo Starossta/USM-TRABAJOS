@@ -19,7 +19,6 @@ document.getElementById('tipoResiduo').addEventListener('change', function() {
         // añadir las nuevas subcategorias
         subcategorias[tipoSeleccionado].forEach(function(subcategoria) {
             const option = document.createElement('option');
-            option.value = subcategoria.toLowerCase();
             option.textContent = subcategoria;
             subcategoriaSelect.appendChild(option);
         });
