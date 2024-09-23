@@ -19,19 +19,12 @@ document.getElementById('tipoResiduo').addEventListener('change', function() {
         // añadir las nuevas subcategorias
         subcategorias[tipoSeleccionado].forEach(function(subcategoria) {
             const option = document.createElement('option');
-            option.value = subcategoria.toLowerCase();
             option.textContent = subcategoria;
             subcategoriaSelect.appendChild(option);
         });
     }
 });
 
-// validacion del formulario
 document.getElementById('formulario_reciclaje').addEventListener('submit', function(event) {
-    // Prevenir envio del formulario si hay errores
-    let valid = true;
-
-    if (valid) {
-        alert("Formulario enviado correctamente");
-    }
+    alert("Formulario enviado correctamente");
 });
