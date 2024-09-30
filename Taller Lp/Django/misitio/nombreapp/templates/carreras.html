@@ -1,0 +1,9 @@
+{%extends 'index.html' %}
+{%block main%}
+    <ul>
+        Carreras
+        {%for carrera in carreras%}
+        <li> {{carrera}}</li>
+        {%endfor%}
+    </ul>
+{%endblock%}

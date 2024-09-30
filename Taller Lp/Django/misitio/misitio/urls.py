@@ -18,8 +18,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from nombreapp.views import home
+from nombreapp.views import carreras
 
 urlpatterns = [
+    path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('saludo/',home, name='home'),
+    path('carreras/',carreras, name='carreras'),
 ]
