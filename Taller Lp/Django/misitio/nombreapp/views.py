@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Carrera
 
 # Create your views here.
 def home(request):
@@ -12,8 +13,7 @@ def home(request):
     return render(request,'index.html',data)
 def carreras(request):
     titulo = 'carreras'
-    carreras=('Tecnico en informatica',
-    'Ingenieria en informatica','ing civil informatica')
+    carreras = Carrera.objects.all()
     data={
         'titulo' :titulo,
         'carreras':carreras
