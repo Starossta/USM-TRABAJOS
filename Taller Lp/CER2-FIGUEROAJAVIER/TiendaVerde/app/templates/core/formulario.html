@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block main %}
+    <h1 class="container-fluid col-12 text-center h12" >Solicitud de Reciclaje</h1>
+    <div class="container">
+        <form id="formulario_reciclaje">
+            <div class="mb-3">
+                <label for="tipoResiduo" class="form-label">Tipo de Residuo</label>
+                <select class="form-select" id="tipoResiduo" required>
+                    <option value="">Seleccione un tipo de residuo</option>
+                    <option value="plastico">Plástico</option>
+                    <option value="papel">Papel</option>
+                    <option value="vidrio">Vidrio</option>
+                    <option value="metales">Metales</option>
+                    <option value="electronicos">Electrónicos</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="subcategoriaResiduo" class="form-label">Subcategoría de Residuo</label>
+                <select class="form-select" id="subcategoriaResiduo" required>
+                    <option value="">Seleccione una subcategoría</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="cantidad" class="form-label">Cantidad de Residuos</label>
+                <input type="number" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="comentarios" class="form-label">Comentarios Adicionales</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class=" button ">Enviar</button>
+        </form>
+    </div>
+    <script src="{% static 'core/js/script.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block main %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="container col-md-4  text-center">
+                <img src="{% static 'core/img/imagen1.jpg' %}" alt="asd" id="asd" class=""> 
+            </div>
+            <div class="container col-md-4"> 
+                <div class="text-center">
+                    <p class="h12" > Green Shop</p>
+                    <p> En Green Shop nos dedicamos a la venta de productos ecológicos diseñados para cuidar de nuestro planeta. Nuestra misión es ofrecer alternativas sostenibles que respeten el medio ambiente y promuevan un estilo de vida más consciente. Aquí encontrarás productos eco-friendly, desde artículos de uso diario hasta soluciones innovadoras para reducir tu huella ecológica.
+                        Cada compra en Green Shop es un paso hacia un futuro más verde. Únete a nosotros en este viaje hacia la sostenibilidad y el respeto por la naturaleza.</p>                 
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="text-center h12" > Productos Destacados</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                   <img src="{% static 'core/img/bolsa.jpg' %}" alt="">
+                   <div class="card-body">
+                    <h2 class="card-title"> Bolsa Green Shop </h2>
+                    <p class="card-text"> Bolsa verde ecológica, reutilizable y amigable con el medio ambiente. Perfecta para tus compras diarias, hecha de materiales sostenibles y diseñada para reducir el uso de plásticos. </p>
+
+                   </div> 
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                   <img src="{% static 'core/img/Botella2.jpg' %}" alt="">
+                   <div class="card-body">
+                    <h2 class="card-title"> Botella Reutilizable Premium Green Shop </h2>
+                    <p class="card-text"> Botella reutilizable de acero inoxidable, libre de BPA, ideal para mantener tus bebidas frías o calientes por más tiempo. Una opción ecológica y duradera que te ayuda a reducir el uso de plásticos de un solo uso. </p>
+                   </div> 
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                   <img src="{% static 'core/img/Cepillos1.jpg' %}" alt="">
+                   <div class="card-body">
+                    <h2 class="card-title"> Cepillos De Dientes Bambú </h2>
+                    <p class="card-text"> Cepillo de dientes de bambú biodegradable, diseñado para una limpieza eficaz y suave con el planeta. Hecho de materiales sostenibles, es una alternativa ecológica al plástico. </p>
+
+                   </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
