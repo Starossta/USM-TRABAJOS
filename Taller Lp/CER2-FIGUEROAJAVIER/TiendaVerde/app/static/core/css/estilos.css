@@ -10,7 +10,7 @@ button{
     background-color: #9db17c;
     margin-bottom: 10px;
     border-radius: 5px 5px 5px 5px;
-    border: solid #3a2618;
+    border: solid #9db17c;
 }
 nav{
     background-color: #9db17c;
@@ -60,4 +60,9 @@ a{
 }
 .logo{
     margin: 10px;
+}
+.form-control{
+    font-family: 'Times New Roman', Times, serif;
+    color: #1b512d;
+    font-style: italic;
 }

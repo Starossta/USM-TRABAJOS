@@ -15,11 +15,16 @@
             <div class="col-2 container-fluid opcionesvar " > <a class="nav-link " href="{% url 'productos'%}"> Catálogo </a> </div>
             <div class="col-2 container-fluid opcionesvar" > <a class="nav-link" href="{% url 'formulario'%}"> Solicitud de formulario </a></div>
             {% if user.is_authenticated %}
-                <div class="col-2 container-fluid opcionesvar" > <a class="nav-link" href="{% url 'formulario'%}"> Log Out </a></div>
+                <div class="col-2 container-fluid opcionesvar" > 
+                    <form method="POST" action="{% url 'logout'%}">
+                        {% csrf_token %}
+                        <button type="submit"> Cerrar Sesion</button>
+                    </form>
+                </div>
                 <div class="col-2 container-fluid opcionesvar" > <a class="nav-link" href="{% url 'formulario'%}"> Mi carrito </a></div>
             {% else %}
-                <div class="col-2 container-fluid opcionesvar" > <a class="nav-link" href="{% url 'formulario'%}"> Iniciar Sesion </a></div>
-                <div class="col-2 container-fluid opcionesvar" > <a class="nav-link" href="{% url 'formulario'%}"> Registrarse </a></div>
+                <div class="col-2 container-fluid opcionesvar" > <a class="nav-link" href="{% url 'login'%}"> Iniciar Sesion </a></div>
+                <div class="col-2 container-fluid opcionesvar" > <a class="nav-link" href="{% url 'registro'%}"> Registrarse </a></div>
             {%endif%}
         </div>
     </nav>

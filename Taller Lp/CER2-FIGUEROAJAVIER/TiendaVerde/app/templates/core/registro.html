@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block main %}
+    <div class="container-fluid">
+        <div class="text-center">
+            <h2 class="h12">Registro de usuario</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }} <!-- Muestra el formulario con estilo básico (párrafos) -->
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
