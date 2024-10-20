@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block main %}
+
+<h2>Carrito de compras</h2>
+<ul>
+    {% for producto in productos %}
+        <li>{{ producto.nombre }} - {{ producto.precio }}
+            <a href="{% url 'eliminar_del_carrito' producto.id %}">Eliminar</a>
+        </li>
+    {% endfor %}
+</ul>
+<p>Total: {{ total }}</p>
+<a href="{% url 'confirmar_pedido' %}">Confirmar Pedido</a>
+
+{%endblock%}

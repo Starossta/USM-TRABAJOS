@@ -10,3 +10,9 @@ class RegistroForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RegistroForm, self).__init__(*args, **kwargs)
         self.fields['username'].help_text = ''
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('Este correo electrónico ya está en uso.')
+        return email

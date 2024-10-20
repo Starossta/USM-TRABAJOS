@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import home, productos, formulario, registro
+from app.views import home, productos, formulario, registro, confirmar_pedido, ver_carrito, eliminar_del_carrito, agregar_al_carrito
 
 from django.contrib.auth import views as auth_views
 
@@ -29,4 +29,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('login/', auth_views.LoginView.as_view(template_name='core/login.html'), name='login'),
     path('registro/', registro, name='registro'),
+    path('agregar-al-carrito/<int:producto_id>/', agregar_al_carrito, name='agregar_al_carrito'),
+    path('ver-carrito/', ver_carrito, name='ver_carrito'),
+    path('eliminar-del-carrito/<int:producto_id>/', eliminar_del_carrito, name='eliminar_del_carrito'),
+    path('confirmar-pedido/', confirmar_pedido, name='confirmar_pedido'),
 ]

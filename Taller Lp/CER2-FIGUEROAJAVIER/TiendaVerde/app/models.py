@@ -14,4 +14,6 @@ class Pedido(models.Model):
     productos = models.ManyToManyField(Producto)
     total = models.IntegerField()
     estado = models.CharField(max_length=20, default='Pendiente')
+
+
 # Create your models here.
