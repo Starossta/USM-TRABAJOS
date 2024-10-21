@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import home, productos, formulario, registro, confirmar_pedido, ver_carrito, eliminar_del_carrito, agregar_al_carrito
+from app.views import home, productos, formulario, registro, confirmar_pedido, ver_carrito, eliminar_del_carrito, agregar_al_carrito, actualizar_carrito
 
 from django.contrib.auth import views as auth_views
 
@@ -33,4 +33,5 @@ urlpatterns = [
     path('ver-carrito/', ver_carrito, name='ver_carrito'),
     path('eliminar-del-carrito/<int:producto_id>/', eliminar_del_carrito, name='eliminar_del_carrito'),
     path('confirmar-pedido/', confirmar_pedido, name='confirmar_pedido'),
+    path('actualizar-carrito/<int:producto_id>/', actualizar_carrito, name='actualizar_carrito'),
 ]

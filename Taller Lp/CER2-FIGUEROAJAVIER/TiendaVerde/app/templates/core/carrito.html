@@ -2,15 +2,51 @@
 {% load static %}
 {% block main %}
 
-<h2>Carrito de compras</h2>
-<ul>
-    {% for producto in productos %}
-        <li>{{ producto.nombre }} - {{ producto.precio }}
-            <a href="{% url 'eliminar_del_carrito' producto.id %}">Eliminar</a>
-        </li>
-    {% endfor %}
-</ul>
-<p>Total: {{ total }}</p>
-<a href="{% url 'confirmar_pedido' %}">Confirmar Pedido</a>
+    <h2>Carrito de Compras</h2>
+
+    <!-- Si el carrito está vacío -->
+    {% if not carrito_items %}
+    <p>Tu carrito está vacío. </p>
+    {% else %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Recorremos los productos en el carrito -->
+            {% for item in carrito_items %}
+            <tr>
+                <td>{{ item.producto.nombre }}</td>
+                <td>{{ item.producto.precio }}$</td>
+                <td>
+                    <!-- Formulario para actualizar la cantidad -->
+                    <form action="{% url 'actualizar_carrito' item.producto.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="number" name="cantidad" value="{{ item.cantidad }}" min="1" class="form-control" style="width: 80px;">
+                        <button type="submit" class="btn btn-info btn-sm">Actualizar</button>
+                    </form>
+                </td>
+                <td>{{ item.subtotal }}$</td>
+                <td>
+                    <!-- Botón para eliminar el producto del carrito -->
+                    <a href="{% url 'eliminar_del_carrito' item.producto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <!-- Total del carrito -->
+    <p><strong>Total: </strong>{{ total }}$</p>
+    
+    <!-- Botón para confirmar el pedido -->
+    <a href="{% url 'confirmar_pedido' %}" class="btn btn-primary">Confirmar Pedido</a>
+    {% endif %}
 
 {%endblock%}

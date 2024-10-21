@@ -15,5 +15,19 @@ class Pedido(models.Model):
     total = models.IntegerField()
     estado = models.CharField(max_length=20, default='Pendiente')
 
+    def __str__(self):
+        return f'Pedido #{self.id} - ({self.estado})'
+    
+    def mostrar_productos(self):
+        return ", ".join([producto.nombre for producto in self.productos.all()])
+
+class PedidoProducto(models.Model):
+    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f'{self.producto.nombre} (x{self.cantidad})'
+
 
 # Create your models here.

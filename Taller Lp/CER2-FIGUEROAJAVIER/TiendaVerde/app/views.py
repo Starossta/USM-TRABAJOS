@@ -1,9 +1,6 @@
 from django.shortcuts import render,redirect,  get_object_or_404
-from django.contrib.auth.models import User
 from .forms import RegistroForm
-from django.db import models
-from .models import Producto, Pedido
-
+from .models import Producto, Pedido, PedidoProducto
 # Create your views here.
 def home(request):
     titulo='Inicio'
@@ -32,43 +29,102 @@ def registro(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])  # Encripta la contraseña
             user.save()
-            return redirect('login')  # Redirige a la página de inicio de sesión
+            return redirect('login')
     else:
         form = RegistroForm()
     return render(request, 'core/registro.html', {'form': form})
 
 def ver_carrito(request):
-    carrito = request.session.get('carrito', [])  # Obtener el carrito de la sesión
-    productos = Producto.objects.filter(id__in=carrito)  # Obtener los productos correspondientes a los IDs en el carrito
-    total = sum([producto.precio for producto in productos])  # Calcular el total
-    return render(request, 'core/carrito.html', {'productos': productos, 'total': total})
+    carrito = request.session.get('carrito', {})  # Obtener el carrito como diccionario
+    if isinstance(carrito, list):  # Si accidentalmente es una lista, inicializamos a dict vacío
+        carrito = {}
+
+    productos = Producto.objects.filter(id__in=carrito.keys())  # Obtener los productos con los IDs en el carrito
+    total = 0
+    carrito_items = []
+
+    for producto in productos:
+        cantidad = carrito.get(str(producto.id), 0)  # Obtener la cantidad del producto
+        subtotal = producto.precio * cantidad
+        total += subtotal
+        carrito_items.append({
+            'producto': producto,
+            'cantidad': cantidad,
+            'subtotal': subtotal,
+        })
+
+    return render(request, 'core/carrito.html', {'carrito_items': carrito_items, 'total': total})
+
+
 
 def eliminar_del_carrito(request, producto_id):
-    carrito = request.session.get('carrito', [])
-    if producto_id in carrito:
-        carrito.remove(producto_id)  # Eliminar el producto del carrito
-    request.session['carrito'] = carrito  # Actualizar el carrito en la sesión
-    return redirect('ver_carrito')  # Redirigir al carrito actualizado
+    carrito = request.session.get('carrito', {})
+    
+    if str(producto_id) in carrito:
+        del carrito[str(producto_id)] 
+    request.session['carrito'] = carrito
+    
+    return redirect('ver_carrito')
 
 def confirmar_pedido(request):
-    carrito = request.session.get('carrito', [])
-    productos = Producto.objects.filter(id__in=carrito)
-    total = sum([producto.precio for producto in productos])
+    carrito = request.session.get('carrito', {})
+
+    # Obtener los productos del carrito
+    productos_ids = carrito.keys()
+    productos = Producto.objects.filter(id__in=productos_ids)
+
+    total = 0
+    productos_pedido = []
+
+    # Calcular el total considerando la cantidad de cada producto
+    for producto in productos:
+        cantidad = carrito[str(producto.id)]  # Cantidad de este producto en el carrito
+        total += producto.precio * cantidad
+        # Añadir el producto con su cantidad al pedido
+        productos_pedido.append((producto, cantidad))
 
     # Crear el pedido
     pedido = Pedido.objects.create(cliente=request.user, total=total)
-    pedido.productos.set(productos)
-    pedido.save()
+
+    # Añadir productos al pedido con cantidades
+    for producto, cantidad in productos_pedido:
+        PedidoProducto.objects.create(pedido=pedido, producto=producto, cantidad=cantidad)
 
     # Vaciar el carrito después de confirmar el pedido
-    request.session['carrito'] = []
+    request.session['carrito'] = {}
 
-    return render(request, 'core/carrito.html', {'pedido': pedido})
-
+    return redirect('ver_carrito')
 def agregar_al_carrito(request, producto_id):
     producto = get_object_or_404(Producto, id=producto_id)
-    carrito = request.session.get('carrito', [])  # Obtener el carrito de la sesión o crear uno vacío
-    carrito.append(producto.id)  # Agregar el ID del producto al carrito
-    request.session['carrito'] = carrito  # Guardar el carrito en la sesión
-    return redirect('ver_carrito')  # Redirigir a la vista del carrito
+    
+    # Obtener el carrito de la sesión o crear uno nuevo como diccionario
+    carrito = request.session.get('carrito', {})
 
+    # Asegúrate de que 'carrito' sea un diccionario
+    if isinstance(carrito, list):
+        carrito = {}  # Si es una lista, lo inicializamos como un diccionario
+
+    # Agregar el producto al carrito o incrementar su cantidad si ya está
+    if str(producto_id) in carrito:
+        carrito[str(producto_id)] += 1
+    else:
+        carrito[str(producto_id)] = 1
+
+    # Guardar el carrito actualizado en la sesión
+    request.session['carrito'] = carrito
+    
+    return redirect('ver_carrito')
+
+def actualizar_carrito(request, producto_id):
+    if request.method == 'POST':
+        cantidad = int(request.POST.get('cantidad'))
+        carrito = request.session.get('carrito', {})
+        
+        if cantidad > 0:
+            carrito[str(producto_id)] = cantidad  # Actualiza la cantidad del producto
+        else:
+            del carrito[str(producto_id)]  # Si la cantidad es 0, elimina el producto del carrito
+        
+        request.session['carrito'] = carrito  # Guarda los cambios en la sesión
+    
+    return redirect('ver_carrito')
