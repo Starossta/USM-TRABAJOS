@@ -32,11 +32,14 @@ def registro(request):
             return redirect('login')
     else:
         form = RegistroForm()
-    return render(request, 'core/registro.html', {'form': form})
+    data={
+        'form': form
+    }
+    return render(request, 'core/registro.html', data)
 
 def ver_carrito(request):
     carrito = request.session.get('carrito', {})  # Obtener el carrito como diccionario
-    if isinstance(carrito, list):  # Si accidentalmente es una lista, inicializamos a dict vacío
+    if isinstance(carrito, list):
         carrito = {}
 
     productos = Producto.objects.filter(id__in=carrito.keys())  # Obtener los productos con los IDs en el carrito
@@ -52,8 +55,11 @@ def ver_carrito(request):
             'cantidad': cantidad,
             'subtotal': subtotal,
         })
+    data={
+        'carrito_items': carrito_items, 'total': total
+    }
 
-    return render(request, 'core/carrito.html', {'carrito_items': carrito_items, 'total': total})
+    return render(request, 'core/carrito.html', data)
 
 
 
@@ -90,19 +96,18 @@ def confirmar_pedido(request):
     for producto, cantidad in productos_pedido:
         PedidoProducto.objects.create(pedido=pedido, producto=producto, cantidad=cantidad)
 
-    # Vaciar el carrito después de confirmar el pedido
+    # Vaciar el carrito despues de confirmar el pedido
     request.session['carrito'] = {}
 
     return redirect('ver_carrito')
 def agregar_al_carrito(request, producto_id):
     producto = get_object_or_404(Producto, id=producto_id)
     
-    # Obtener el carrito de la sesión o crear uno nuevo como diccionario
+    # Obtener el carrito de la sesion o crear uno nuevo como diccionario
     carrito = request.session.get('carrito', {})
 
-    # Asegúrate de que 'carrito' sea un diccionario
     if isinstance(carrito, list):
-        carrito = {}  # Si es una lista, lo inicializamos como un diccionario
+        carrito = {} 
 
     # Agregar el producto al carrito o incrementar su cantidad si ya está
     if str(producto_id) in carrito:
